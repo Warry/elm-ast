@@ -213,6 +213,14 @@ f x =
 g : Int -> Int
 g x =
   f x + 1
+
+h : Int -> Int
+h x =
+  g
+    x
+    +
+  10
+
 """
 
 multipleDeclarations : Test
@@ -235,6 +243,15 @@ multipleDeclarations =
                                                (Variable ["f"])
                                                (Variable ["x"]))
                                             (Integer 1))
+         , FunctionTypeDeclaration "h" (TypeApplication
+                                          (TypeConstructor ["Int"] [])
+                                          (TypeConstructor ["Int"] []))
+         , FunctionDeclaration "h" ["x"] (BinOp
+                                            (Variable ["+"])
+                                            (Application
+                                                (Variable ["g"])
+                                                (Variable ["x"]))
+                                            (Integer 10))
          ]
 
 moduleFixityInput : String

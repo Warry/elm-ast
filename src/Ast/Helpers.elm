@@ -50,7 +50,7 @@ spaces : Parser String
 spaces = regex "[ \t]*"
 
 spaces' : Parser String
-spaces' = regex "[ \t]+"
+spaces' = regex "[ \r\t\n]*[ \t]+"
 
 symbol : String -> Parser String
 symbol k =
